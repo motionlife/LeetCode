@@ -9,32 +9,31 @@ import java.util.Arrays;
 public class TwoSum {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{3,2,4};
-        int target =  6;
-        int[] result  = new TwoSum().twoSum(nums,target);
+        int[] nums = new int[]{3, 2, 4};
+        int target = 6;
+        int[] result = new TwoSum().twoSum(nums, target);
         System.out.println(Arrays.toString(result));
     }
 
     public int[] twoSum(int[] nums, int target) {
         int[] copy = new int[nums.length];
-        System.arraycopy(nums,0,copy,0,nums.length);
+        System.arraycopy(nums, 0, copy, 0, nums.length);
         Arrays.sort(copy);
         int i = 0;
         int j = copy.length - 1;
-        while (true){
+        while (true) {
             int sum = copy[i] + copy[j];
-            if(sum>target) {
+            if (sum > target) {
                 j--;
-            }
-            else if (sum<target){
+            } else if (sum < target) {
                 i++;
-            }else{
+            } else {
                 break;
             }
         }
         int start = 0, end = nums.length - 1;
-        while(nums[start]!=copy[i]) start++;
-        while (nums[end]!=copy[j]) end--;
-        return new int[]{start,end};
+        while (nums[start] != copy[i]) start++;
+        while (nums[end] != copy[j]) end--;
+        return new int[]{start, end};
     }
 }
