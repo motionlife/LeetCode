@@ -15,7 +15,7 @@ public class LongestPalindromicSubstring {
     }
 
     public String longestPalindrome(String s) {
-        String longest = s.substring(0, 1);
+        int left = 0, right = 1, max = 1;
         int len = s.length();
         for (int i = 1; i < 2 * len; i++) {
             int re = i % 2;
@@ -25,10 +25,12 @@ public class LongestPalindromicSubstring {
                 r++;
             }
             String pal = s.substring(l + 1, r);
-            if (pal.length() > longest.length()) {
-                longest = pal;
+            if (pal.length() > max) {
+                max = pal.length();
+                left = l + 1;
+                right = r;
             }
         }
-        return longest;
+        return s.substring(left, right);
     }
 }
