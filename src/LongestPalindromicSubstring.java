@@ -11,24 +11,23 @@
  */
 public class LongestPalindromicSubstring {
     public static void main(String[] args) {
-        System.out.println(new LongestPalindromicSubstring().longestPalindrome("abcde"));
+        System.out.println(new LongestPalindromicSubstring().longestPalindrome("babad"));
     }
 
     public String longestPalindrome(String s) {
-        int i = 0;
         String longest = s.substring(0, 1);
         int len = s.length();
-        while (i < len) {
-            int l = 0, r = 0;
-            while (s.charAt(i - l) == s.charAt(i + r)) {
-                l++;
+        for (int i = 1; i < 2 * len; i++) {
+            int re = i % 2;
+            int l = (i - re) / 2, r = (i + re) / 2;
+            while (l > -1 && r < len && (s.charAt(l) == s.charAt(r))) {
+                l--;
                 r++;
             }
-            String pal = s.substring(i - l, i + r - 1);
+            String pal = s.substring(l + 1, r);
             if (pal.length() > longest.length()) {
                 longest = pal;
             }
-            i += r;
         }
         return longest;
     }
